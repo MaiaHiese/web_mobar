@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+/* 1. Le decimos a Tailwind que existe esta nueva animación */
+@theme {
+  --animate-slide-ribbon: slide-ribbon 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* 2. Definimos cómo es el movimiento AFUERA del theme (CSS puro) */
+@keyframes slide-ribbon {
+  0% { 
+    transform: translateX(-20%); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateX(0); 
+    opacity: 1; 
+  }
+}
