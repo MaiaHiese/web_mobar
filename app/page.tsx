@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Carousel from '@/components/Carousel';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import Footer from '@/components/Footer';
 
 const reasonsToChoose = [
   "Muebles a medida de excelente calidad",
@@ -14,7 +15,6 @@ const reasonsToChoose = [
 ];
 
 export default function Home() {
-  // Las fotos que se van a mostrar en la sección de Beneficios
   const featuresImages = [
     "/pqe1.jpg",
     "/pqe2.jpg",
@@ -22,47 +22,55 @@ export default function Home() {
   ];
 
   return (
-    <>
+    // Agregamos el div principal que envuelve todo (Header, Main y Footer)
+    <div className="relative min-h-screen isolate">
+      
+      {/* --- FONDO GLOBAL DE PAPEL ARRUGADO --- */}
+      {/* Usamos "fixed" en lugar de "absolute" para que el fondo no se corte al hacer scroll */}
+      <div className="fixed inset-0 -z-20 bg-[url('/textura-papel.jpg')] bg-cover bg-center opacity-60"></div>
+      <div className="fixed inset-0 -z-10 bg-white/10"></div>
+      {/* -------------------------------------- */}
+
       <Header />
+      
       <main>
+        {/* SECCIÓN 1: HERO */}
         <Hero />
 
-        {/* -- RESPUESTA AL PUNTO 6 Y 7 (Eliminar bloques antiguos) --
-            He eliminado los componentes antiguos para centrar la atención en la nueva estructura. */}
+        {/* --- EL ROMPEOLAS --- */}
+        <section className="bg-[#05AEEA] w-full py-10 shadow-inner relative z-10">
+          <div className="max-w-[1000px] mx-auto px-6 text-center flex flex-col gap-1">
+            <p className="text-white text-xl md:text-2xl font-medium drop-shadow-sm">
+              No vendemos solo muebles, creamos espacios que se viven.
+            </p>
+            <p className="text-white text-xl md:text-2xl font-medium drop-shadow-sm">
+              Nos metemos en cada detalle para lograr algo que <span className="font-extrabold">realmente te represente.</span>
+            </p>
+          </div>
+        </section>
 
-        {/* -- RESPUESTA AL PUNTO 5 (Nuevo bloque Zigzag "Por qué elegirnos?") -- 
-            Actualizado con efecto de "Cintas" animadas que salen desde atrás de la foto. */}
-        <section className="bg-white py-20 w-full overflow-hidden">
-          
-          {/* -- RESPUESTA AL PUNTO 4 (Efecto Plomada: max-w-[1200px] mx-auto px-6) -- */}
+        {/* SECCIÓN 2: POR QUÉ ELEGIRNOS */}
+        {/* Como el fondo ya está a nivel global, le sacamos la foto a esta sección y dejamos solo el padding */}
+        <section className="relative pt-12 pb-24 w-full">
           <div className="max-w-[1200px] mx-auto px-6">
             
-            <h2 className="text-[#595A5C] text-3xl md:text-4xl font-extrabold leading-tight text-center mb-12">
+            <h2 className="text-[#595A5C] text-3xl md:text-4xl font-extrabold leading-tight text-center mb-16">
               ¿Por qué elegirnos?
             </h2>
 
-            {/* Contenedor Grid: items-stretch hace que ambas columnas midan lo mismo de alto */}
             <div className="grid md:grid-cols-2 gap-8 md:gap-0 items-stretch">
               
-              {/* Columna Izquierda: El Carousel (Z-10 para tapar el inicio de las cintas) */}
-              <div className="order-1 relative w-full aspect-[4/3] z-10 shadow-2xl rounded-2xl overflow-hidden bg-gray-100">
+              <div className="order-1 relative w-full aspect-[4/3] z-10 shadow-2xl shadow-[#05AEEA]/20 rounded-2xl overflow-hidden bg-white ring-1 ring-black/5">
                  <Carousel images={featuresImages} />
               </div>
 
-              {/* Columna Derecha: El listado de Cintas
-                  md:-ml-8 hace que se solapen un poquito por detrás del Carousel en PC.
-                  justify-between reparte las 6 cintas para que ocupen todo el alto disponible. */}
               <div className="order-2 relative flex flex-col justify-between py-2 md:-ml-8 z-0">
                 {reasonsToChoose.map((reason, index) => (
                   <div 
                     key={index}
-                    // Clase 'animate-slide-ribbon' definida en globals.css
-                    // El bg-[#F9FAFB] es el gris clarito que combina con el logo
-                    className="flex items-center gap-4 bg-[#F9FAFB] border border-gray-100 text-[#595A5C] py-3.5 pr-6 pl-6 md:pl-14 rounded-r-2xl shadow-sm opacity-0 animate-slide-ribbon hover:bg-gray-50 transition-colors"
-                    // Retraso de animación para que salgan escalonadas
+                    className="flex items-center gap-4 bg-white border border-gray-100 text-[#595A5C] py-3.5 pr-6 pl-6 md:pl-14 rounded-r-2xl shadow-sm opacity-0 animate-slide-ribbon hover:shadow-md transition-all"
                     style={{ animationDelay: `${index * 150}ms` }}
                   >
-                    {/* Icono Check con el color Celeste Mobar */}
                     <CheckCircleIcon className="w-7 h-7 text-[#05AEEA] flex-shrink-0 drop-shadow-sm" aria-hidden="true" />
                     <span className="text-base md:text-lg font-medium tracking-tight">{reason}</span>
                   </div>
@@ -74,6 +82,8 @@ export default function Home() {
         </section>
 
       </main>
-    </>
+      
+      <Footer />
+    </div>
   );
 }
