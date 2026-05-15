@@ -12,8 +12,7 @@ const Hero = () => {
     "/h7.webp",
     "/h8.webp",
     "/h9.webp", 
-    "/h10.webp",
-    "/h11.webp"
+    "/h10.webp"
   ];
 
   // link de WhatsApp con mensaje automático
