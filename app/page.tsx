@@ -44,7 +44,7 @@ export default function Home() {
               No vendemos solo muebles, creamos espacios que se viven.
             </p>
             <p className="text-white text-xl md:text-2xl font-medium drop-shadow-sm">
-              Nos metemos en cada detalle para lograr algo que <span className="font-extrabold">realmente te represente.</span>
+              Nos involucramos en cada detalle para lograr algo que <span className="font-extrabold">realmente te represente.</span>
             </p>
           </div>
         </section>
