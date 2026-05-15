@@ -9,8 +9,9 @@ const Header = () => {
     // pt-12 para dar buen aire arriba y que luzca el logo sobresaliendo
     <header className="relative w-full pt-12 z-50 isolate">
       
-      {/* 1. FRANJA TURQUESA TOTAL (Ocupa todo el ancho de la pantalla) */}
-      <div className="w-full bg-[#05AEEA] h-20 shadow-lg relative z-0">
+      {/* 1. FRANJA TURQUESA TOTAL CON DEGRADÉ */}
+      {/* Corregimos 'bg-linear' por 'bg-gradient'*/}
+      <div className="w-full bg-gradient-to-r from-[#05AEEA] via-[#05AEEA] to-[#0080B5] h-20 shadow-lg relative z-0">
         
         {/* 2. CONTENEDOR INTERNO (Mantiene la 'plomada' de 1200px) */}
         <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between relative">
@@ -18,7 +19,7 @@ const Header = () => {
           {/* Espacio reservado a la izquierda para el logo */}
           <div className="w-32 md:w-40 flex-shrink-0"></div>
 
-          {/* BOTÓN CONTACTANOS (Alineado a la derecha del contenedor) */}
+          {/* BOTÓN CONTACTANOS */}
           <Link
             href={whatsappLink}
             target="_blank"
@@ -27,15 +28,13 @@ const Header = () => {
             Contactanos
           </Link>
 
-          {/* 3. LOGO 3D SOBRESALIENDO (Posicionado absolutamente dentro del contenedor) */}
-          {/* md:left-6 alinea el círculo con el inicio del texto en la plomada */}
+          {/* 3. LOGO 3D SOBRESALIENDO */}
           <div className="absolute left-6 top-1/2 -translate-y-1/2 z-10">
-            {/* EL TRUCO: Borde blanco + shadow-2xl shadow-gray-600/50 para el efecto 3D */}
             <div className="bg-white w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center border-4 border-white shadow-2xl shadow-gray-600/50 overflow-hidden transition-transform hover:scale-105 duration-300">
               <Image 
                 src="/Mobar_Logo_Circulo.png" 
                 alt="Mobar Logo Circular" 
-                width={150} // Imagen interna más grande
+                width={150}
                 height={150} 
                 className="object-contain p-2"
                 priority
@@ -44,8 +43,9 @@ const Header = () => {
           </div>
 
         </div>
+      {/* Cerramos el div del banner turquesa ACÁ, envolviendo al contenido */}
       </div>
-    </header>
+    </header> 
   );
 };
 

@@ -16,9 +16,11 @@ const reasonsToChoose = [
 
 export default function Home() {
   const featuresImages = [
-    "/pqe1.jpg",
-    "/pqe2.jpg",
-    "/pqe3.jpg"
+    "/ptn1.webp",
+    "/ptn2.webp",
+    "/ptn3.webp",
+    "/ptn4.webp",
+    "/ptn5.webp"
   ];
 
   return (
@@ -36,18 +38,21 @@ export default function Home() {
       <main>
         {/* SECCIÓN 1: HERO */}
         <Hero />
-
-        {/* --- EL ROMPEOLAS --- */}
-        <section className="bg-[#05AEEA] w-full py-10 shadow-inner relative z-10">
-          <div className="max-w-[1000px] mx-auto px-6 text-center flex flex-col gap-1">
-            <p className="text-white text-xl md:text-2xl font-medium drop-shadow-sm">
-              No vendemos solo muebles, creamos espacios que se viven.
-            </p>
-            <p className="text-white text-xl md:text-2xl font-medium drop-shadow-sm">
-              Nos involucramos en cada detalle para lograr algo que <span className="font-extrabold">realmente te represente.</span>
-            </p>
-          </div>
-        </section>
+    
+        {/* --- EL ROMPEOLAS CON DEGRADÉ Y ONDA --- */}
+          <section className="relative w-full py-12 shadow-inner overflow-hidden">
+            {/* Fondo con degradé diagonal para dar esa "onda" geométrica */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#05AEEA] via-[#009FD6] to-[#0080B5] -skew-y-1 origin-center scale-110"></div>
+            
+            <div className="relative max-w-[1000px] mx-auto px-6 text-center flex flex-col gap-1 z-10">
+              <p className="text-white text-xl md:text-2xl font-medium drop-shadow-md italic opacity-90">
+                No vendemos solo muebles, creamos espacios que se viven.
+              </p>
+              <p className="text-white text-xl md:text-2xl font-medium drop-shadow-md">
+                Nos metemos en cada detalle para lograr algo que <span className="font-extrabold">realmente te represente.</span>
+              </p>
+            </div>
+          </section>
 
         {/* SECCIÓN 2: POR QUÉ ELEGIRNOS */}
         {/* Como el fondo ya está a nivel global, le sacamos la foto a esta sección y dejamos solo el padding */}
@@ -60,9 +65,10 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-8 md:gap-0 items-stretch">
               
-              <div className="order-1 relative w-full aspect-[4/3] z-10 shadow-2xl shadow-[#05AEEA]/20 rounded-2xl overflow-hidden bg-white ring-1 ring-black/5">
-                 <Carousel images={featuresImages} />
-              </div>
+            {/* Antes decía aspect-[4/3] solamente */}
+            <div className="order-1 relative w-full aspect-square md:aspect-[5/4] z-10 shadow-2xl shadow-[#05AEEA]/20 rounded-2xl overflow-hidden bg-white ring-1 ring-black/5">
+              <Carousel images={featuresImages} />
+            </div>
 
               <div className="order-2 relative flex flex-col justify-between py-2 md:-ml-8 z-0">
                 {reasonsToChoose.map((reason, index) => (

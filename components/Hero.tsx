@@ -3,9 +3,17 @@ import Carousel from './Carousel';
 
 const Hero = () => {
   const heroImages = [
-    "/Hero1.jpg", 
-    "/Hero2.jpg", 
-    "/Hero3.jpg"
+    "/h1.webp", 
+    "/h2.webp", 
+    "/h3.webp",
+    "/h4.webp",
+    "/h5.webp", 
+    "/h6.webp", 
+    "/h7.webp",
+    "/h8.webp",
+    "/h9.webp", 
+    "/h10.webp",
+    "/h11.webp"
   ];
 
   // link de WhatsApp con mensaje automático
@@ -48,7 +56,8 @@ const Hero = () => {
           </Link>
         </div>
 
-        <div className="relative w-full aspect-square md:aspect-[4/3] z-10">
+        {/* Antes teníamos md:aspect-[4/3] */}
+        <div className="relative w-full aspect-square md:aspect-[5/4] z-10">
           <Carousel images={heroImages} />
         </div>
 
