@@ -17,9 +17,24 @@ export default function Carousel({ images }: CarouselProps) {
     setMounted(true);
   }, []);
 
+  // --- NUEVA LÓGICA DE AUTOPLAY ---
+  useEffect(() => {
+    // Si el usuario abrió la foto en grande, pausamos el autoplay
+    if (isOpen) return;
+
+    // Configuramos el temporizador para que cambie cada 3 segundos (3000 ms)
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, 3000);
+
+    // Limpiamos el temporizador si el componente se desmonta o el usuario abre el modal
+    return () => clearInterval(timer);
+  }, [images.length, isOpen]);
+  // --------------------------------
+
   // Funciones separadas para poder usarlas tanto en el carrusel chico como en el grande
   const nextSlide = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation(); // Evita que al hacer click en la flecha se cierre el modal
+    if (e) e.stopPropagation(); 
     setCurrent(current === images.length - 1 ? 0 : current + 1);
   };
 
@@ -31,18 +46,28 @@ export default function Carousel({ images }: CarouselProps) {
   return (
     <div className="relative w-full h-full group">
     {/* IMAGEN PRINCIPAL */}
+{/* IMAGEN PRINCIPAL CON EFECTO DESLIZAR */}
       <div 
-        // 1. Le sacamos el bg-gray-100/50 porque ya no hay huecos que tapar
         className="relative w-full h-full cursor-pointer overflow-hidden rounded-2xl"
         onClick={() => setIsOpen(true)}
       >
-        <Image
-          src={images[current]}
-          alt={`Trabajo Mobar ${current}`}
-          fill
-          // 2. Volvemos a 'object-cover' y le sacamos el 'p-2' (padding) que la achicaba
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        {/* Contenedor de la "Tira" de imágenes */}
+        <div 
+          className="flex w-full h-full transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
+          {images.map((img, index) => (
+            // Cada imagen ocupa el 100% del ancho (min-w-full)
+            <div key={index} className="relative min-w-full h-full">
+              <Image
+                src={img}
+                alt={`Trabajo Mobar ${index}`}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* FLECHAS DEL CARRUSEL NORMAL */}
