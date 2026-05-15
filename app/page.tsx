@@ -2,8 +2,8 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Carousel from '@/components/Carousel';
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import Footer from '@/components/Footer';
+import AnimatedRibbons from '@/components/AnimatedRibbons'; // Acordate de que este archivo ya tiene que estar creado en components/
 
 const reasonsToChoose = [
   "Muebles a medida de excelente calidad",
@@ -40,22 +40,21 @@ export default function Home() {
         <Hero />
     
         {/* --- EL ROMPEOLAS CON DEGRADÉ Y ONDA --- */}
-          <section className="relative w-full py-12 shadow-inner overflow-hidden">
-            {/* Fondo con degradé diagonal para dar esa "onda" geométrica */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#05AEEA] via-[#009FD6] to-[#0080B5] -skew-y-1 origin-center scale-110"></div>
-            
-            <div className="relative max-w-[1000px] mx-auto px-6 text-center flex flex-col gap-1 z-10">
-              <p className="text-white text-xl md:text-2xl font-medium drop-shadow-md italic opacity-90">
-                No vendemos solo muebles, creamos espacios que se viven.
-              </p>
-              <p className="text-white text-xl md:text-2xl font-medium drop-shadow-md">
-                Nos metemos en cada detalle para lograr algo que <span className="font-extrabold">realmente te represente.</span>
-              </p>
-            </div>
-          </section>
+        <section className="relative w-full py-12 shadow-inner overflow-hidden">
+          {/* Fondo con degradé diagonal para dar esa "onda" geométrica */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#05AEEA] via-[#009FD6] to-[#0080B5] -skew-y-1 origin-center scale-110"></div>
+          
+          <div className="relative max-w-[1000px] mx-auto px-6 text-center flex flex-col gap-1 z-10">
+            <p className="text-white text-xl md:text-2xl font-medium drop-shadow-md italic opacity-90">
+              No vendemos solo muebles, creamos espacios que se viven.
+            </p>
+            <p className="text-white text-xl md:text-2xl font-medium drop-shadow-md">
+              Nos involucramos en cada detalle para lograr algo que <span className="font-extrabold">realmente te represente.</span>
+            </p>
+          </div>
+        </section>
 
         {/* SECCIÓN 2: POR QUÉ ELEGIRNOS */}
-        {/* Como el fondo ya está a nivel global, le sacamos la foto a esta sección y dejamos solo el padding */}
         <section className="relative pt-12 pb-24 w-full">
           <div className="max-w-[1200px] mx-auto px-6">
             
@@ -65,23 +64,13 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-8 md:gap-0 items-stretch">
               
-            {/* Antes decía aspect-[4/3] solamente */}
-            <div className="order-1 relative w-full aspect-square md:aspect-[5/4] z-10 shadow-2xl shadow-[#05AEEA]/20 rounded-2xl overflow-hidden bg-white ring-1 ring-black/5">
-              <Carousel images={featuresImages} />
-            </div>
-
-              <div className="order-2 relative flex flex-col justify-between py-2 md:-ml-8 z-0">
-                {reasonsToChoose.map((reason, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center gap-4 bg-white border border-gray-100 text-[#595A5C] py-3.5 pr-6 pl-6 md:pl-14 rounded-r-2xl shadow-sm opacity-0 animate-slide-ribbon hover:shadow-md transition-all"
-                    style={{ animationDelay: `${index * 150}ms` }}
-                  >
-                    <CheckCircleIcon className="w-7 h-7 text-[#05AEEA] flex-shrink-0 drop-shadow-sm" aria-hidden="true" />
-                    <span className="text-base md:text-lg font-medium tracking-tight">{reason}</span>
-                  </div>
-                ))}
+              {/* CARRUSEL */}
+              <div className="order-1 relative w-full aspect-square md:aspect-[5/4] z-10 shadow-2xl shadow-[#05AEEA]/20 rounded-2xl overflow-hidden bg-white ring-1 ring-black/5">
+                <Carousel images={featuresImages} />
               </div>
+
+              {/* COMPONENTE ANIMADO (Reemplaza a todo el código de cintas anterior) */}
+              <AnimatedRibbons reasons={reasonsToChoose} />
 
             </div>
           </div>
