@@ -13,7 +13,7 @@ const Hero = () => {
     "/h8.webp",
     "/h9.webp", 
     "/h10.webp"
-  ];
+  ]
 
   // link de WhatsApp con mensaje automático
   const message = encodeURIComponent("Hola Mobar! Me gustaría cotizar un proyecto de mueble a medida.");
